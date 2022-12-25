@@ -1,9 +1,15 @@
 import React from "react";
+import moment from "moment/moment";
 
 
 function NameListItem(props){
     return(
-        <li>{props.name} {props.course}</li>
+        <li>
+            <p><img src={props.avatar} />name:{props.name}</p>
+            <p>location:{props.location}</p>
+            <p>email:{props.email}</p>
+            <p>birthday:{" "}{moment(props.birthday).format("DD-MM-YYYY")}</p> 
+        </li>
     )
 }
 
