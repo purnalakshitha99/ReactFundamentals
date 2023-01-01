@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NameListItem from "./NameListItem";
 
 function NameList() {
@@ -29,11 +29,15 @@ function NameList() {
     },
   ]);
 
+  useEffect(() => {
+    console.log("Redering");
+  });
+
   const nameListComponent = () => {
     return nameList.map((aName) => {
       return (
         <NameListItem
-          //key={aName.id}
+          key={aName.id}
           name={`${aName.name.first} ${aName.name.last}`}
           location={aName.location.city}
           email={aName.email}
@@ -46,7 +50,7 @@ function NameList() {
 
   const addUserHandler = () => {
     const newUser = {
-      //id: 5,
+      id: new Date(),
       name: { first: "Revun", last: "Garashchenko" },
       location: { city: "Kobelyaki" },
       email: "revun@gamil.com",
