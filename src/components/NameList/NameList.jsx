@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import NameListItem from "./NameListItem";
 
 function NameList() {
-  const nameList = [
+  const [nameList, setNameList] = useState([
     {
       id: 1,
       name: { first: "purna", last: "ekeanayaka" },
@@ -27,13 +27,13 @@ function NameList() {
       dob: { date: "2001-03-08T15:13:16.688Z", age: 24 },
       picture: { medium: "https://randomuser.me/api/portraits/med/men/8.jpg" },
     },
-  ];
+  ]);
 
   const nameListComponent = () => {
     return nameList.map((aName) => {
       return (
         <NameListItem
-          key={aName.id}
+          //key={aName.id}
           name={`${aName.name.first} ${aName.name.last}`}
           location={aName.location.city}
           email={aName.email}
@@ -43,9 +43,29 @@ function NameList() {
       );
     });
   };
+
+  const addUserHandler = () => {
+    const newUser = {
+      //id: 5,
+      name: { first: "Revun", last: "Garashchenko" },
+      location: { city: "Kobelyaki" },
+      email: "revun@gamil.com",
+      dob: { date: "2014-04-13T21:51:47.809Z", age: 24 },
+      picture: { medium: "https://randomuser.me/api/portraits/med/men/41.jpg" },
+    };
+
+    //setNameList((nameList) => nameList.concat(newUser));
+
+    //spread
+    setNameList((NameList) => [...nameList, newUser]);
+  };
+
   return (
     <React.Fragment>
       <div className="container mt-4r">
+        <button className="btn btn-primary mb-3" onClick={addUserHandler}>
+          Add Name
+        </button>
         <ul className="list-group">{nameListComponent()}</ul>
       </div>
     </React.Fragment>

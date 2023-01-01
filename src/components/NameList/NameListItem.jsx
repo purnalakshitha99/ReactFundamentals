@@ -5,15 +5,22 @@ import "./NameListitem.css";
 function NameListItem(props) {
   return (
     <li className="lsit-group-item">
-      <div className="row">
-        <div className="col-sm">
-          <img src={props.avatar} alt={props.name} />
+      <div className="row container text-center">
+        <div className="col-2">
+          <img
+            src={props.avatar}
+            alt={props.name}
+            className="border border-dark rounded-circle shadow-sm"
+          />
         </div>
-        <div className="col-sm">
-          <p style={{ color: "green" }}>name:{props.name}</p>
-          <p>location:{props.location}</p>
-          <p>email:{props.email}</p>
-          <p>birthday: {moment(props.birthday).format("DD-MM-YYYY")}</p>
+        <div className="col-10">
+          <h4 style={{ color: "green" }}> name:{props.name}</h4>
+          <p>
+            {" "}
+            email:{props.email} | location:{props.location}
+          </p>
+
+          <small>{moment(props.birthday).format("DD-MM-YYYY")}</small>
         </div>
       </div>
     </li>
