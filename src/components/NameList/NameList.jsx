@@ -30,8 +30,14 @@ function NameList() {
   ]);
 
   useEffect(() => {
-    console.log("Redering");
-  });
+    fetch("https://randomuser.me/api")
+      .then((Response) => {
+        return Response.json();
+      })
+      .then((ResponseData) => {
+        setNameList((nameList) => [...nameList, ResponseData.results[0]]);
+      });
+  }, []);
 
   const nameListComponent = () => {
     return nameList.map((aName) => {
