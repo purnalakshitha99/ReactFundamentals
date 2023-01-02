@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import NameListItem from "./NameListItem";
 
 function NameList() {
+  const [loadData, setLoadData] = useState(new Date());
   const [nameList, setNameList] = useState([
     {
       id: 1,
@@ -37,7 +38,7 @@ function NameList() {
       .then((ResponseData) => {
         setNameList((nameList) => [...nameList, ResponseData.results[0]]);
       });
-  }, []);
+  }, [loadData]);
 
   const nameListComponent = () => {
     return nameList.map((aName) => {
@@ -55,19 +56,7 @@ function NameList() {
   };
 
   const addUserHandler = () => {
-    const newUser = {
-      id: new Date(),
-      name: { first: "Revun", last: "Garashchenko" },
-      location: { city: "Kobelyaki" },
-      email: "revun@gamil.com",
-      dob: { date: "2014-04-13T21:51:47.809Z", age: 24 },
-      picture: { medium: "https://randomuser.me/api/portraits/med/men/41.jpg" },
-    };
-
-    //setNameList((nameList) => nameList.concat(newUser));
-
-    //spread
-    setNameList((NameList) => [...nameList, newUser]);
+    setLoadData(new Date());
   };
 
   return (
